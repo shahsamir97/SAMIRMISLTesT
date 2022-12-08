@@ -1,4 +1,0 @@
-package com.apps.therapassignment.appsecrets
-
-
-const val API_SECRET_CODE = "e92d1aa5f67ce24713cf638550f5daa84ef5ea3466ae29af8b1ad16fbe6c5fbb"
