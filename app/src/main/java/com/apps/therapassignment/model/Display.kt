@@ -1,8 +1,13 @@
 package com.apps.therapassignment.model
 
+import com.squareup.moshi.Json
+
 data class Display(
-    val Aspect Ratio: String,
-    val Display Type: String,
-    val Resolution: String,
-    val Screen Size: String
+    @Json(name = "Aspect Ratio")
+    val aspectRatio: String?,
+    @Json(name = "Display Type")
+    val displayType: String?,
+    val Resolution: String?,
+    @Json(name = "Screen Size")
+    val screenSize: String?
 )

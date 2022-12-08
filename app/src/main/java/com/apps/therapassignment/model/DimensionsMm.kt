@@ -1,6 +1,10 @@
 package com.apps.therapassignment.model
 
+import com.squareup.moshi.Json
+
 data class DimensionsMm(
-    val Set Size with Stand (WxHxD): String,
-    val Set Size without Stand (WxHxD): String
+    @Json(name = "Set Size with Stand (WxHxD)")
+    val setSizeWithStand: String?,
+    @Json(name = "Set Size without Stand (WxHxD)")
+    val setSizeWithoutStand: String?
 )

@@ -1,5 +1,8 @@
 package com.apps.therapassignment.model
 
+import com.squareup.moshi.Json
+
 data class ProductType(
-    val Product Type: String
+    @Json(name = "Product Type")
+    val productType: String?
 )

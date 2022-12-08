@@ -1,6 +1,10 @@
 package com.apps.therapassignment.model
 
+import com.squareup.moshi.Json
+
 data class Memory(
-    val RAM Size (GB): String,
-    val ROM Size (GB): String
+    @Json(name = "RAM Size (GB)")
+    val ram: String?,
+    @Json(name = "ROM Size (GB)")
+    val rom: String?
 )
