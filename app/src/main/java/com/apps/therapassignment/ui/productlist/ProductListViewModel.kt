@@ -13,14 +13,22 @@ class ProductListViewModel(private val repo: ProductListRepository): ViewModel()
     val productList : LiveData<ArrayList<ProductListResponseItem>>
     get() = _productList
 
+    private val _showMessage = MutableLiveData<String>()
+    val showMessage : LiveData<String>
+    get() = _showMessage
+
     init {
         fetchProducts()
     }
 
     private fun fetchProducts(){
         viewModelScope.launch {
-            val response = repo.getAllProducts()
-            _productList.value =  response as ArrayList<ProductListResponseItem>
+            try {
+                val response = repo.getAllProducts()
+                _productList.value =  response as ArrayList<ProductListResponseItem>
+            }catch (e: java.lang.Exception){
+                _showMessage.value = "Something went wrong! Please Check your internet connection"
+            }
         }
     }
 }
