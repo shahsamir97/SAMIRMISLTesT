@@ -3,6 +3,7 @@ package com.apps.therapassignment.ui.productlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.apps.therapassignment.R
 import com.apps.therapassignment.databinding.ItemProductLayoutBinding
 import com.apps.therapassignment.model.ProductListResponseItem
 import com.bumptech.glide.Glide
@@ -21,7 +22,7 @@ class ProductListAdapter(private var productList: ArrayList<ProductListResponseI
         with(holder.binding){
             (productList[position]).let { product ->
                 productName.text = product.name
-                productCategory.text = product.specification?.productType?.productType
+                productPrice.text = holder.binding.productPrice.context.getString(R.string.product_price, product.price.toString())
                 productDescription.text = product.description
                 Glide.with(productImage.context).load(product.image_url).into(productImage)
             }

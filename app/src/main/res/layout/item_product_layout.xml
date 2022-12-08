@@ -3,11 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/card_top_or_bottom_margin"
+    android:layout_marginBottom="@dimen/card_top_or_bottom_margin"
+    app:cardCornerRadius="@dimen/card_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/card_padding">
 
         <ImageView
             android:id="@+id/productImage"
@@ -25,14 +29,18 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/productImage"
             app:layout_constraintTop_toTopOf="@+id/productImage"
             tools:text="@string/product_name" />
 
         <TextView
-            android:id="@+id/productCategory"
+            android:id="@+id/productPrice"
             android:layout_width="0dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/productName"
@@ -43,10 +51,12 @@
             android:id="@+id/productDescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:maxLines="3"
+            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="@+id/productImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/productCategory"
-            app:layout_constraintTop_toBottomOf="@+id/productCategory"
+            app:layout_constraintStart_toStartOf="@+id/productPrice"
+            app:layout_constraintTop_toBottomOf="@+id/productPrice"
             tools:text="@string/product_description"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
