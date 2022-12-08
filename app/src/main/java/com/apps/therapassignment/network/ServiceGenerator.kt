@@ -1,5 +1,6 @@
 package com.apps.therapassignment.network
 
+import com.apps.therapassignment.appsecrets.API_SECRET_CODE
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -16,7 +17,14 @@ class ServiceGenerator {
         val apiService: ApiService by lazy {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            val okHttpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+            val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor {chain ->
+                    var request = chain.request()
+                    request = request.newBuilder().addHeader("Secret_Code", API_SECRET_CODE).build()
+                    chain.proceed(request)
+                }
+                .build()
 
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
