@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/productImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
         <TextView
-            android:id="@+id/repoName"
+            android:id="@+id/productName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -26,28 +26,28 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            tools:text="@string/repo_name" />
+            app:layout_constraintStart_toEndOf="@+id/productImage"
+            app:layout_constraintTop_toTopOf="@+id/productImage"
+            tools:text="@string/product_name" />
 
         <TextView
-            android:id="@+id/authorName"
+            android:id="@+id/productCategory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/repoName"
-            app:layout_constraintTop_toBottomOf="@+id/repoName"
-            tools:text="Author : Owner's Name" />
+            app:layout_constraintStart_toStartOf="@+id/productName"
+            app:layout_constraintTop_toBottomOf="@+id/productName"
+            tools:text="@string/product_category" />
 
         <TextView
-            android:id="@+id/repoDescription"
+            android:id="@+id/productDescription"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/productImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/authorName"
-            app:layout_constraintTop_toBottomOf="@+id/authorName"
-            tools:text="@string/repo_description"/>
+            app:layout_constraintStart_toStartOf="@+id/productCategory"
+            app:layout_constraintTop_toBottomOf="@+id/productCategory"
+            tools:text="@string/product_description"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
