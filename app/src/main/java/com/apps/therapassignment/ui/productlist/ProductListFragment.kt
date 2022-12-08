@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.apps.therapassignment.GloryTvApplication
 import com.apps.therapassignment.databinding.FragmentProductListBinding
 import com.apps.therapassignment.network.ServiceGenerator
 
@@ -16,7 +17,8 @@ class ProductListFragment : Fragment() {
     lateinit var binding : FragmentProductListBinding
 
     private val viewModel: ProductListViewModel by viewModels {
-        ProductListViewModelFactory(ProductListRepository(ServiceGenerator.apiService))
+        ProductListViewModelFactory(ProductListRepository(ServiceGenerator.apiService,
+            (requireActivity().applicationContext as GloryTvApplication).db.ProductDao()))
     }
 
     override fun onCreateView(

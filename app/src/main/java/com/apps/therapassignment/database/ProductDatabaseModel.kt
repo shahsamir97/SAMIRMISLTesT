@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class RepoDatabaseModel (
+data class ProductDatabaseModel (
     @PrimaryKey val uid: Int,
     val productName: String,
     val productPrice: Int,

@@ -6,10 +6,6 @@ import com.apps.therapassignment.database.ProductDatabase
 
 class GloryTvApplication: Application() {
 
-    lateinit var db:ProductDatabase
+     val db:ProductDatabase by lazy { DatabaseHelper.getDatabase(applicationContext) }
 
-    override fun onCreate() {
-        super.onCreate()
-        db=DatabaseHelper.getDatabase(applicationContext)
-    }
 }

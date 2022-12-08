@@ -27,6 +27,7 @@ class ProductListViewModel(private val repo: ProductListRepository): ViewModel()
                 val response = repo.getAllProducts()
                 _productList.value =  response as ArrayList<ProductListResponseItem>
             }catch (e: java.lang.Exception){
+                e.printStackTrace()
                 _showMessage.value = "Something went wrong! Please Check your internet connection"
             }
         }
