@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.apps.therapassignment.R
+import com.apps.therapassignment.databinding.FragmentProductListBinding
 import com.apps.therapassignment.network.ServiceGenerator
 
 class ProductListFragment : Fragment() {
 
     lateinit var adapter: ProductListAdapter
+    lateinit var binding : FragmentProductListBinding
+
     private val viewModel: ProductListViewModel by viewModels {
         ProductListViewModelFactory(ProductListRepository(ServiceGenerator.apiService))
     }
@@ -19,19 +22,27 @@ class ProductListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_list, container, false)
+        binding = FragmentProductListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        initUi()
+        setUpObservers()
     }
 
     private fun initUi() {
-
+        adapter = ProductListAdapter(ArrayList())
+        binding.productList.adapter = adapter
     }
 
+    private fun setUpObservers(){
+        viewModel.productList.observe(viewLifecycleOwner){
+            adapter.updateData(it)
+        }
+    }
 }

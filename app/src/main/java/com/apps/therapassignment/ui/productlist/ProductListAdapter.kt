@@ -33,5 +33,6 @@ class ProductListAdapter(private var productList: ArrayList<ProductListResponseI
     fun updateData(data: ArrayList<ProductListResponseItem>){
         productList.clear()
         productList = data
+        notifyDataSetChanged()
     }
 }
