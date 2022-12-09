@@ -7,5 +7,4 @@ import com.apps.therapassignment.database.ProductDatabase
 class GloryTvApplication: Application() {
 
      val db:ProductDatabase by lazy { DatabaseHelper.getDatabase(applicationContext) }
-
 }
