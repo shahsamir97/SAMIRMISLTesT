@@ -11,6 +11,7 @@ import com.apps.therapassignment.R
 import com.apps.therapassignment.databinding.FragmentProductDetailsBinding
 import com.apps.therapassignment.network.ServiceGenerator
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class ProductDetailsFragment : Fragment() {
 
@@ -43,7 +44,10 @@ class ProductDetailsFragment : Fragment() {
                 screenSize.text = getString(R.string.screen_size, it.specification.Display?.screenSize)
                 aspectRatio.text = getString(R.string.aspect_ratio, it.specification.Display?.aspectRatio)
                 ramAndRom.text = getString(R.string.ram_rom, it.specification.Memory?.ram, it.specification.Memory?.rom)
-                Glide.with(requireContext()).load(it.image_url).into(productImageView)
+                Glide.with(requireContext()).load(it.image_url).apply(
+                    RequestOptions()
+                    .placeholder(R.drawable.ic_baseline_image_24)
+                    .error(R.drawable.ic_baseline_broken_image_24)).into(productImageView)
             }
         }
     }

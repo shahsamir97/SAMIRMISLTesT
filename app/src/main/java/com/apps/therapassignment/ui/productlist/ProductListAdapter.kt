@@ -9,6 +9,7 @@ import com.apps.therapassignment.R
 import com.apps.therapassignment.database.ProductDatabaseModel
 import com.apps.therapassignment.databinding.ItemProductLayoutBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class ProductListAdapter(private val onClickItem:(productId:Int)-> Unit):
     PagingDataAdapter<ProductDatabaseModel, ProductListAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -47,7 +48,12 @@ class ProductListAdapter(private val onClickItem:(productId:Int)-> Unit):
                     product?.productPrice.toString()
                 )
                 productDescription.text = product?.description
-                Glide.with(productImage.context).load(product?.imageUrl).into(productImage)
+
+                Glide.with(productImage.context).load(product?.imageUrl).apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.ic_baseline_image_24)
+                        .error(R.drawable.ic_baseline_broken_image_24)).into(productImage)
+
                 root.setOnClickListener { onClickItem(product!!.uid) }
             })
         }
