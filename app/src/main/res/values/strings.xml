@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Glory TV</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="product_name">Product Name</string>
     <string name="product_description">Product description</string>
     <string name="product_category">Product Category</string>
     <string name="product_price">Price : %1s</string>
+    <string name="screen_size">Screen Size : %1s</string>
+    <string name="aspect_ratio">Aspect Ratio : %1s</string>
+    <string name="ram_rom">Ram : %1s and Rom : %2s</string>
 </resources>
