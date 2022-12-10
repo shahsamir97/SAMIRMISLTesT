@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.apps.therapassignment.GloryTvApplication
 import com.apps.therapassignment.databinding.FragmentProductListBinding
 import com.apps.therapassignment.network.ServiceGenerator
+import kotlinx.coroutines.flow.collectLatest
 
 class ProductListFragment : Fragment() {
 
@@ -37,17 +39,19 @@ class ProductListFragment : Fragment() {
     }
 
     private fun initUi() {
-        adapter = ProductListAdapter(ArrayList())
+        adapter = ProductListAdapter()
         binding.productList.adapter = adapter
     }
 
     private fun setUpObservers(){
-        viewModel.productList.observe(viewLifecycleOwner){
-            adapter.updateData(it)
-        }
-
         viewModel.showMessage.observe(viewLifecycleOwner){
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.pagedListHoliday.collectLatest {
+                adapter.submitData(it)
+            }
         }
     }
 }

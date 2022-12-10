@@ -2,14 +2,25 @@ package com.apps.therapassignment.ui.productlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.therapassignment.R
+import com.apps.therapassignment.database.ProductDatabaseModel
 import com.apps.therapassignment.databinding.ItemProductLayoutBinding
-import com.apps.therapassignment.model.ProductListResponseItem
 import com.bumptech.glide.Glide
 
-class ProductListAdapter(private var productList: ArrayList<ProductListResponseItem>) :
-    RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
+class ProductListAdapter:PagingDataAdapter<ProductDatabaseModel, ProductListAdapter.ViewHolder>(DIFF_CALLBACK) {
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ProductDatabaseModel>() {
+            override fun areItemsTheSame(oldItem: ProductDatabaseModel, newItem: ProductDatabaseModel): Boolean =
+                oldItem.uid == newItem.uid
+
+            override fun areContentsTheSame(oldItem: ProductDatabaseModel, newItem: ProductDatabaseModel): Boolean =
+                oldItem == newItem
+        }
+    }
 
     inner class ViewHolder(val binding: ItemProductLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,20 +31,12 @@ class ProductListAdapter(private var productList: ArrayList<ProductListResponseI
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding){
-            (productList[position]).let { product ->
-                productName.text = product.name
-                productPrice.text = holder.binding.productPrice.context.getString(R.string.product_price, product.price.toString())
-                productDescription.text = product.description
-                Glide.with(productImage.context).load(product.image_url).into(productImage)
-            }
+            (getItem(position).let { product ->
+                productName.text = product?.productName
+                productPrice.text = holder.binding.productPrice.context.getString(R.string.product_price, product?.productPrice.toString())
+                productDescription.text = product?.description
+                Glide.with(productImage.context).load(product?.imageUrl).into(productImage)
+            })
         }
-    }
-
-    override fun getItemCount(): Int = productList.size
-
-    fun updateData(data: ArrayList<ProductListResponseItem>){
-        productList.clear()
-        productList = data
-        notifyDataSetChanged()
     }
 }

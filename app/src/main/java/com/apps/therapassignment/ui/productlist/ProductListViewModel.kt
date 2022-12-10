@@ -4,14 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.apps.therapassignment.database.ProductDatabaseModel
 import com.apps.therapassignment.model.ProductListResponseItem
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class ProductListViewModel(private val repo: ProductListRepository): ViewModel() {
 
-    private val _productList = MutableLiveData<ArrayList<ProductListResponseItem>>()
-    val productList : LiveData<ArrayList<ProductListResponseItem>>
-    get() = _productList
+    val pagedListHoliday: Flow<PagingData<ProductDatabaseModel>> =
+        repo.getProductPagedData().cachedIn(viewModelScope)
 
     private val _showMessage = MutableLiveData<String>()
     val showMessage : LiveData<String>
@@ -24,8 +27,7 @@ class ProductListViewModel(private val repo: ProductListRepository): ViewModel()
     private fun fetchProducts(){
         viewModelScope.launch {
             try {
-                val response = repo.getAllProducts()
-                _productList.value =  response as ArrayList<ProductListResponseItem>
+                repo.getAllProducts()
             }catch (e: java.lang.Exception){
                 e.printStackTrace()
                 _showMessage.value = "Something went wrong! Please Check your internet connection"
