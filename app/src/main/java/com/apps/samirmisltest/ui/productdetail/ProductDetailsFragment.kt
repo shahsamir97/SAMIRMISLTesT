@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.apps.samirmisltest.R
+import com.apps.samirmisltest.databinding.FragmentProductDetailsBinding
 import com.apps.samirmisltest.network.ServiceGenerator
-import com.apps.therapassignment.R
-import com.apps.therapassignment.databinding.FragmentProductDetailsBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
