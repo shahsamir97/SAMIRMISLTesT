@@ -16,7 +16,7 @@ class ProductListPagingSource(
 
         return try {
             withContext(Dispatchers.IO){
-                val entities = dao.getUsers(params.loadSize, page * params.loadSize)
+                val entities = dao.getUsers(PAGE_SIZE, page * PAGE_SIZE)
                 LoadResult.Page(
                     data = entities,
                     prevKey = if (page == 0) null else page - 1,
