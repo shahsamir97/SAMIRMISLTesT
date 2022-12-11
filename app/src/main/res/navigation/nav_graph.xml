@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/repoListFragment"
-        android:name="com.apps.therapassignment.ui.productlist.ProductListFragment"
+        android:name="com.apps.samirmisltest.ui.productlist.ProductListFragment"
         android:label="fragment_repo_list"
         tools:layout="@layout/fragment_product_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.apps.therapassignment.ui.productdetail.ProductDetailsFragment"
+        android:name="com.apps.samirmisltest.ui.productdetail.ProductDetailsFragment"
         android:label="fragment_add_note"
         tools:layout="@layout/fragment_product_details" >
         <argument
